@@ -1,0 +1,17 @@
+.navContainer{
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  background-color: #57606f;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 4px -1px rgba(0,0,0,0.25);
+  z-index: 100;
+}
+
+.navTitle{
+  padding-left: 7px;
+  margin: 0;
+  color: white;
+}

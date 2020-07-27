@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
+import Nav from './Components/Nav'
+import CardHome from './Components/CardHome'
+import Footer from './Components/Footer'
+
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [charactersArray, setCharactersArray] = useState([])
+
+  useEffect(() => {
+    apiData()
+  }, [])  
+  
+  const apiData = async () => {
+    const data = await fetch(process.env.REACT_APP_URL)
+    const characters = await data.json()
+    
+    setCharactersArray(characters)
+}
+
+  let cardhomeData = []
+  for(let i=0; i<charactersArray.length; i++){
+    cardhomeData.push(<CardHome 
+      name={charactersArray[i].name} 
+      birthday={charactersArray[i].birthday}
+      nickname={charactersArray[i].nickname} 
+      status={charactersArray[i].status} 
+      portrayed={charactersArray[i].portrayed} 
+      image={charactersArray[i].img} />)
+  }
+  
+ return (
+    <>
+      <Nav/>
+      <div className="appContainer">
+       {cardhomeData}
+        
+      </div>
+      <Footer/>
+    </>
   );
 }
 
