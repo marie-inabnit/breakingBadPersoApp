@@ -15,7 +15,7 @@ function App() {
   }, [])  
   
   const apiData = async () => {
-    const data = await fetch(process.env.REACT_APP_URL)
+    const data = await fetch('https://www.breakingbadapi.com/api/characters')
     const characters = await data.json()
     
     setCharactersArray(characters)
